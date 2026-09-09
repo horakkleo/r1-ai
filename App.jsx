@@ -433,9 +433,9 @@ export default function R1Landing() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <Reveal>
             <div className="max-w-[640px] mx-auto">
-              <p className="text-[14px] mb-3.5" style={{ fontFamily: "'Inter', sans-serif", color: INK_SOFT }}>
+              <h2 className="text-[22px] lg:text-[24px] font-semibold tracking-tight mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", color: INK }}>
                 Spočítejte si, kolik vás to reálně stojí
-              </p>
+              </h2>
               <LossCalculator />
             </div>
           </Reveal>
