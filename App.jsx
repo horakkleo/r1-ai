@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
- 
+
 const FONT_IMPORT = `@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');`;
- 
+
 const PHONE = "774 301 940";
 const PHONE_TEL = "+420774301940";
 const EMAIL = "horakk.leo@gmail.com";
@@ -10,7 +10,7 @@ const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent(
 )}&body=${encodeURIComponent(
   "Dobrý den, měl bych zájem o 10minutovou ukázku R1 AI. Prosím o návrh termínu."
 )}`;
- 
+
 const INK = "#14171A";
 const INK_SOFT = "#5B5F5A";
 const BORDER = "#E4E4DE";
@@ -20,7 +20,7 @@ const ACCENT_DEEP = "#0F172A";
 const DARK = "#12151A";
 const DARK_BORDER = "#262B33";
 const DARK_TEXT_SOFT = "#9AA0A8";
- 
+
 function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -43,7 +43,7 @@ function useReveal() {
   }, []);
   return [ref, visible];
 }
- 
+
 function Reveal({ children, className = "", delay = 0 }) {
   const [ref, visible] = useReveal();
   return (
@@ -60,7 +60,7 @@ function Reveal({ children, className = "", delay = 0 }) {
     </div>
   );
 }
- 
+
 /* Section label: number + title. Numbering mirrors the page's real, fixed
    structure (a defined sequence of 8 sections), so it functions as a table
    of contents a visitor can scan, not decoration. */
@@ -92,7 +92,7 @@ function SectionLabel({ n, children, dark = false }) {
     </div>
   );
 }
- 
+
 function PrimaryButton({ href, children, className = "" }) {
   return (
     <a
@@ -111,7 +111,7 @@ function PrimaryButton({ href, children, className = "" }) {
     </a>
   );
 }
- 
+
 function SecondaryButton({ href, children }) {
   return (
     <a
@@ -123,7 +123,7 @@ function SecondaryButton({ href, children }) {
     </a>
   );
 }
- 
+
 /* ---------------- Signature hero visual: live call console ---------------- */
 function CallConsole() {
   const bars = [6, 14, 9, 18, 11, 16, 7, 13, 10, 17, 8, 15];
@@ -147,7 +147,7 @@ function CallConsole() {
         </div>
         <span className="text-[12px]" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#565B57" }}>00:14</span>
       </div>
- 
+
       <div className="flex items-end gap-[3px] px-5 pt-5 pb-4 h-12">
         {bars.map((h, i) => (
           <span
@@ -157,7 +157,7 @@ function CallConsole() {
           />
         ))}
       </div>
- 
+
       <div className="px-5 pb-5 flex flex-col gap-3">
         {lines.map((l, i) => (
           <div key={i} className="flex flex-col gap-1" style={{ animation: `r1fadeIn 0.6s ease forwards`, animationDelay: `${0.4 + i * 0.35}s`, opacity: 0 }}>
@@ -170,7 +170,7 @@ function CallConsole() {
           </div>
         ))}
       </div>
- 
+
       <div
         className="mx-5 mb-5 rounded-xl px-4 py-3.5"
         style={{ background: "#1B2027", border: "1px solid #2A3038", animation: "r1slideUp 0.6s cubic-bezier(.16,1,.3,1) forwards", animationDelay: "2s", opacity: 0 }}
@@ -196,93 +196,68 @@ function CallConsole() {
     </div>
   );
 }
- 
+
 /* ---------------- Loss calculator ---------------- */
 function LossCalculator() {
   const [missed, setMissed] = useState(3);
   const [conv, setConv] = useState(30);
   const [value, setValue] = useState(2500);
   const [days, setDays] = useState(5);
- 
+
   const fmt = (n) => Math.round(n).toLocaleString("cs-CZ");
   const monthly = missed * (conv / 100) * value * days * (52 / 12);
- 
+
   const fields = [
-    { key: "missed", label: "Kolik hovorů denně přibližně nezvednete?", value: missed, set: setMissed, min: 0, max: 20, step: 1, suffix: " /den" },
-    { key: "conv", label: "Kolik z nich by se stalo zakázkou (%)?", value: conv, set: setConv, min: 10, max: 80, step: 5, suffix: " %" },
+    { key: "missed", label: "Hovorů denně nezvednete", value: missed, set: setMissed, min: 0, max: 20, step: 1, suffix: " /den" },
+    { key: "conv", label: "Kolik z nich by se stalo zakázkou", value: conv, set: setConv, min: 10, max: 80, step: 5, suffix: " %" },
     { key: "value", label: "Průměrná hodnota zakázky", value: value, set: setValue, min: 500, max: 15000, step: 100, suffix: " Kč", format: true },
-    { key: "days", label: "Kolik dní v týdnu je servis otevřený?", value: days, set: setDays, min: 3, max: 7, step: 1, suffix: " dní" },
+    { key: "days", label: "Otevírací dny v týdnu", value: days, set: setDays, min: 3, max: 7, step: 1, suffix: " dní" },
   ];
- 
+
   return (
-    <div className="rounded-2xl p-8 lg:p-11" style={{ background: DARK, border: `1px solid ${DARK_BORDER}`, boxShadow: "0 24px 60px -24px rgba(15,23,42,0.4)" }}>
-      <div className="text-[12px] tracking-[0.14em] uppercase mb-5 text-center" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#5C8DFF" }}>
-        Kalkulačka ztráty
-      </div>
-      <h2 className="text-[26px] lg:text-[30px] leading-[1.2] font-semibold tracking-tight mb-8 text-center" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F2" }}>
-        Kolik korun vám měsíčně proteče mezi prsty s nezvednutými hovory?
-      </h2>
- 
-      <div className="rounded-xl px-5 py-5 mb-8 relative overflow-hidden" style={{ background: "#0B0F1A", border: `1px solid ${DARK_BORDER}` }}>
-        <span
-          className="absolute top-0 left-0 right-0 h-[3px]"
-          style={{ background: `repeating-linear-gradient(-45deg, ${ACCENT} 0px, ${ACCENT} 10px, transparent 10px, transparent 20px)`, opacity: 0.85 }}
-        />
-        <div className="text-[12.5px] mb-1.5" style={{ color: DARK_TEXT_SOFT, fontFamily: "'Inter', sans-serif" }}>
+    <div className="rounded-2xl p-6 lg:p-7" style={{ background: "#FFFFFF", border: `1px solid ${BORDER}` }}>
+      <div className="flex items-baseline justify-between gap-4 mb-1.5 flex-wrap">
+        <span className="text-[13px]" style={{ fontFamily: "'Inter', sans-serif", color: INK_SOFT }}>
           Odhadovaná měsíční ztráta
-        </div>
-        <div className="flex items-baseline">
-          <span className="text-[38px] lg:text-[42px] font-semibold tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#4ADE80" }}>
-            {fmt(monthly)}
-          </span>
-          <span className="text-[15px] ml-2" style={{ color: DARK_TEXT_SOFT, fontFamily: "'Inter', sans-serif" }}>Kč</span>
-        </div>
-        <div className="text-[11.5px] mt-2.5" style={{ color: "#565B57", fontFamily: "'IBM Plex Mono', monospace" }}>
-          {missed} hovorů/den × {days} dní/týden × {conv} % konverze × {fmt(value)} Kč
-        </div>
+        </span>
+        <span className="text-[13px]" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#A8ACA6" }}>
+          {missed}/den × {days} dní × {conv} % × {fmt(value)} Kč
+        </span>
       </div>
- 
-      {fields.map((f) => (
-        <div className="mb-7 last:mb-0" key={f.key}>
-          <div className="flex items-center justify-between mb-2.5 gap-4">
-            <label className="text-[13.5px] font-medium" style={{ fontFamily: "'Inter', sans-serif", color: "#E8ECFF" }}>
-              {f.label}
-            </label>
-            <span className="text-[13.5px] font-medium tabular-nums flex-none" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#5C8DFF" }}>
-              {f.format ? fmt(f.value) : f.value}{f.suffix}
-            </span>
+      <div className="flex items-baseline mb-6 pb-6" style={{ borderBottom: `1px solid ${BORDER}` }}>
+        <span className="text-[27px] font-semibold tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace", color: ACCENT }}>
+          {fmt(monthly)}
+        </span>
+        <span className="text-[14px] ml-1.5" style={{ color: INK_SOFT, fontFamily: "'Inter', sans-serif" }}>Kč</span>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+        {fields.map((f) => (
+          <div key={f.key}>
+            <div className="flex items-center justify-between mb-2 gap-3">
+              <label className="text-[13px]" style={{ fontFamily: "'Inter', sans-serif", color: INK }}>
+                {f.label}
+              </label>
+              <span className="text-[13px] font-medium tabular-nums flex-none" style={{ fontFamily: "'IBM Plex Mono', monospace", color: ACCENT }}>
+                {f.format ? fmt(f.value) : f.value}{f.suffix}
+              </span>
+            </div>
+            <input
+              type="range"
+              className="r1-range"
+              min={f.min}
+              max={f.max}
+              step={f.step}
+              value={f.value}
+              onChange={(e) => f.set(Number(e.target.value))}
+            />
           </div>
-          <input
-            type="range"
-            className="r1-range r1-range-dark"
-            min={f.min}
-            max={f.max}
-            step={f.step}
-            value={f.value}
-            onChange={(e) => f.set(Number(e.target.value))}
-          />
-        </div>
-      ))}
- 
-      <p
-        className="text-[11px] mt-8 pt-6 leading-relaxed"
-        style={{ borderTop: `1px solid ${DARK_BORDER}`, color: "#565B57", fontFamily: "'IBM Plex Mono', monospace" }}
-      >
-        Výpočet: nezvednuté hovory × dny v týdnu × 52/12 × míra konverze × hodnota zakázky. Vlastní čísla, žádné odhady zvenčí.
-      </p>
- 
-      <div className="rounded-xl mt-8 p-5" style={{ background: "#171B22", border: `1px solid ${DARK_BORDER}` }}>
-        <strong className="block text-[14.5px] mb-1.5" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#5C8DFF" }}>
-          Tohle není odhad z prstu.
-        </strong>
-        <p className="text-[13.5px] leading-relaxed" style={{ color: DARK_TEXT_SOFT, fontFamily: "'Inter', sans-serif" }}>
-          Je to počet se svými vlastními čísly. AI recepční R1 AI zvedne tyhle hovory za vás, i když jste u auta — první měsíc na zkoušku.
-        </p>
+        ))}
       </div>
     </div>
   );
 }
- 
+
 /* ---------------- FAQ ---------------- */
 function FaqItem({ q, a, open, onClick }) {
   return (
@@ -308,33 +283,33 @@ function FaqItem({ q, a, open, onClick }) {
     </div>
   );
 }
- 
+
 /* ---------------- Main ---------------- */
 export default function R1Landing() {
   const [faqOpen, setFaqOpen] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
- 
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
- 
+
   const steps = [
     { n: "01", t: "Zákazník zavolá", d: "Telefonát přijde v době, kdy mechanik nemůže zvednout telefon — je pod autem nebo řeší jiného zákazníka." },
     { n: "02", t: "R1 AI přijme hovor", d: "AI recepční hovor okamžitě zvedne a přirozeně komunikuje se zákazníkem, i mimo pracovní dobu." },
     { n: "03", t: "Zjistí potřebné informace", d: "Jméno, telefon, vozidlo, popis problému a případně požadovaný termín." },
     { n: "04", t: "Předá vám připravenou poptávku", d: "Strukturovaná poptávka je hotová a čeká na vás — nic neřešíte za chodu, u auta." },
   ];
- 
+
   const benefits = [
     { t: "Méně zmeškaných hovorů", d: "Telefonát nezůstane bez odpovědi jen proto, že zrovna nikdo nemůže k telefonu." },
     { t: "Méně vyrušování mechaniků", d: "Mechanik nemusí odbíhat od rozdělané práce, aby zvedl telefon." },
     { t: "Přehlednější poptávky", d: "Místo útržkovitého vzkazu dostanete strukturovaný přehled toho, co zákazník potřeboval." },
     { t: "Dostupnost i mimo běžnou pracovní dobu", d: "Zákazník se dovolá i večer nebo o víkendu, kdy je servis běžně zavřený." },
   ];
- 
+
   const faqs = [
     { q: "Co R1 AI umí?", a: "R1 AI dokáže vést první komunikaci se zákazníkem, zjistit předem definované informace a předat je autoservisu." },
     { q: "Může R1 AI přijímat hovory?", a: "Ano, právě telefonická AI recepční je hlavní směr produktu. Konkrétní nastavení se přizpůsobuje potřebám autoservisu." },
@@ -343,7 +318,7 @@ export default function R1Landing() {
     { q: "Jak probíhá spuštění?", a: "Po ukázce si společně projdeme provoz vašeho servisu — otevírací dobu, nabízené služby a časté dotazy — a podle toho AI nastavíme." },
     { q: "Kolik R1 AI stojí?", a: "Cena se bude odvíjet od rozsahu využití a konkrétního nastavení. Podrobnosti vám představíme během ukázky." },
   ];
- 
+
   const navLinks = [
     { href: "#problem", label: "Problém" },
     { href: "#jak-to-funguje", label: "Jak to funguje" },
@@ -351,7 +326,7 @@ export default function R1Landing() {
     { href: "#faq", label: "FAQ" },
     { href: "#kontakt", label: "Kontakt" },
   ];
- 
+
   return (
     <div style={{ background: BG, color: INK, fontFamily: "'Inter', sans-serif" }} className="min-h-screen w-full antialiased">
       <style>{`
@@ -370,7 +345,7 @@ export default function R1Landing() {
         }
         html { scroll-behavior: smooth; }
       `}</style>
- 
+
       {/* NAV */}
       <header
         className="sticky top-0 z-40 transition-shadow duration-200"
@@ -387,13 +362,13 @@ export default function R1Landing() {
             </span>
             <span className="text-[15px] font-semibold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>R1 AI</span>
           </a>
- 
+
           <nav className="hidden md:flex items-center gap-9 text-[13.5px]" style={{ color: INK_SOFT }}>
             {navLinks.map((l) => (
               <a key={l.href} href={l.href} className="hover:text-[#14171A] transition-colors">{l.label}</a>
             ))}
           </nav>
- 
+
           <div className="hidden md:block">
             <a
               href={MAILTO}
@@ -403,7 +378,7 @@ export default function R1Landing() {
               Domluvit ukázku
             </a>
           </div>
- 
+
           <button className="md:hidden" onClick={() => setMenuOpen((v) => !v)} aria-label="Menu">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <path d="M3 6H19M3 11H19M3 16H19" stroke={INK} strokeWidth="1.6" strokeLinecap="round" />
@@ -421,7 +396,7 @@ export default function R1Landing() {
           </div>
         )}
       </header>
- 
+
       {/* HERO */}
       <section id="top" className="max-w-[1200px] mx-auto px-6 lg:px-12 pt-20 lg:pt-28 pb-24 lg:pb-32">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-16 lg:gap-12 items-center">
@@ -446,24 +421,27 @@ export default function R1Landing() {
               <SecondaryButton href="#jak-to-funguje">Jak to funguje</SecondaryButton>
             </div>
           </Reveal>
- 
+
           <Reveal delay={150}>
             <CallConsole />
           </Reveal>
         </div>
       </section>
- 
+
       {/* KALKULAČKA (hned pod hero) */}
-      <section id="kalkulacka" className="pb-20 lg:pb-28">
+      <section id="kalkulacka" className="pb-16 lg:pb-20">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <Reveal>
-            <div className="max-w-[600px] mx-auto">
+            <div className="max-w-[640px] mx-auto">
+              <p className="text-[14px] mb-3.5" style={{ fontFamily: "'Inter', sans-serif", color: INK_SOFT }}>
+                Spočítejte si, kolik vás to reálně stojí
+              </p>
               <LossCalculator />
             </div>
           </Reveal>
         </div>
       </section>
- 
+
       {/* PROBLEM */}
       <section id="problem" className="py-20 lg:py-28" style={{ background: "#FFFFFF", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8 items-start">
@@ -480,7 +458,7 @@ export default function R1Landing() {
           </Reveal>
         </div>
       </section>
- 
+
       {/* SOLUTION */}
       <section id="reseni" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8 items-start">
@@ -497,7 +475,7 @@ export default function R1Landing() {
           </Reveal>
         </div>
       </section>
- 
+
       {/* HOW IT WORKS */}
       <section id="jak-to-funguje" className="py-20 lg:py-28" style={{ background: DARK }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
@@ -507,7 +485,7 @@ export default function R1Landing() {
               Čtyři kroky od zvonícího telefonu k hotové poptávce.
             </h2>
           </Reveal>
- 
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: DARK_BORDER }}>
             {steps.map((s, i) => (
               <Reveal key={s.n} delay={i * 90}>
@@ -521,7 +499,7 @@ export default function R1Landing() {
           </div>
         </div>
       </section>
- 
+
       {/* BENEFITS */}
       <section id="prinosy" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
@@ -543,7 +521,7 @@ export default function R1Landing() {
           </div>
         </div>
       </section>
- 
+
       {/* DEMO CTA */}
       <section id="ukazka" className="py-16 lg:py-20">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
@@ -577,7 +555,7 @@ export default function R1Landing() {
           </Reveal>
         </div>
       </section>
- 
+
       {/* PRO KOHO */}
       <section id="pro-koho" className="py-20 lg:py-28" style={{ background: "#FFFFFF", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8">
@@ -608,7 +586,7 @@ export default function R1Landing() {
           </Reveal>
         </div>
       </section>
- 
+
       {/* FAQ */}
       <section id="faq" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8">
@@ -627,7 +605,7 @@ export default function R1Landing() {
           </Reveal>
         </div>
       </section>
- 
+
       {/* FINAL CTA */}
       <section className="py-20 lg:py-28" style={{ background: DARK }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center flex flex-col items-center">
@@ -639,7 +617,7 @@ export default function R1Landing() {
           </Reveal>
         </div>
       </section>
- 
+
       {/* CONTACT / FOOTER */}
       <footer id="kontakt" className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
@@ -658,7 +636,7 @@ export default function R1Landing() {
               </div>
               <p className="text-[14.5px]" style={{ color: INK_SOFT }}>Leoš Horák</p>
             </div>
- 
+
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-14">
               <div>
                 <span className="block text-[11px] tracking-[0.14em] uppercase mb-2" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#8A8E86" }}>Telefon</span>
