@@ -131,7 +131,7 @@ function CallConsole() {
     { who: "Zákazník", text: "Dobrý den, potřeboval bych vyměnit přední brzdy." },
     { who: "R1 AI", text: "Jasně, zjistím pár údajů. Jaká je značka a model vozu?" },
     { who: "Zákazník", text: "Škoda Octavia, ročník 2018." },
-    { who: "R1 AI", text: "Díky. Kdy by se vám hodilo přivézt auto?" },
+    { who: "R1 AI", text: "Díky. Kdyby se vám hodilo přivézt auto?" },
   ];
   return (
     <div
