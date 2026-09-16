@@ -353,7 +353,6 @@ export default function R1Landing() {
 
   const verticals = [
     { tag: "Autoservisy", t: "Zakázky, které by jinak zajely ke konkurenci", d: "Mechanik je pod autem, hovory se hromadí. R1 Service zjistí vozidlo, popis problému a preferovaný termín a předá vám hotovou poptávku." },
-    { tag: "Restaurace", t: "Rezervace a objednávky, které nezůstanou bez odezvy", d: "V provozní špičce nikdo nestíhá telefon. R1 Service přijme rezervaci nebo objednávku a předá vám ji přehledně a včas." },
   ];
 
   const faqs = [
@@ -608,7 +607,7 @@ export default function R1Landing() {
               Pro provozy, kde telefon zvoní víc, než stíháte zvedat.
             </h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid gap-5 max-w-[520px]">
             {verticals.map((v, i) => (
               <Reveal key={v.tag} delay={i * 90}>
                 <div className="p-7 rounded-[14px] h-full" style={{ background: BG, border: `1px solid ${BORDER}` }}>
