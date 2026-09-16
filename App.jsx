@@ -351,10 +351,6 @@ export default function R1Landing() {
     { t: "Dostupnost i mimo běžnou pracovní dobu", d: "Zákazník se dovolá i večer nebo o víkendu, kdy je provoz běžně zavřený." },
   ];
 
-  const verticals = [
-    { tag: "Autoservisy", t: "Zakázky, které by jinak zajely ke konkurenci", d: "Mechanik je pod autem, hovory se hromadí. R1 Service zjistí vozidlo, popis problému a preferovaný termín a předá vám hotovou poptávku." },
-  ];
-
   const faqs = [
     { q: "Co R1 Service umí?", a: "R1 Service vede první komunikaci se zákazníkem, zjistí předem definované informace a předá je vašemu provozu jako hotovou poptávku nebo rezervaci." },
     { q: "Umí R1 Service přijímat hovory?", a: "Ano, přijímání a zpracování telefonátů je hlavní směr služby. Konkrétní nastavení se přizpůsobuje potřebám vašeho provozu." },
@@ -598,34 +594,11 @@ export default function R1Landing() {
         </div>
       </section>
 
-      {/* PRO KOHO */}
-      <section id="pro-koho" className="py-20 lg:py-28" style={{ background: "#FFFFFF", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <Reveal>
-            <SectionLabel n="06">Pro koho je R1 Service</SectionLabel>
-            <h2 className="text-[26px] lg:text-[30px] leading-[1.25] font-semibold tracking-tight max-w-[520px] mb-14" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              Pro provozy, kde telefon zvoní víc, než stíháte zvedat.
-            </h2>
-          </Reveal>
-          <div className="grid gap-5 max-w-[520px]">
-            {verticals.map((v, i) => (
-              <Reveal key={v.tag} delay={i * 90}>
-                <div className="p-7 rounded-[14px] h-full" style={{ background: BG, border: `1px solid ${BORDER}` }}>
-                  <span className="text-[11px] tracking-[0.1em] uppercase block mb-3" style={{ fontFamily: "'IBM Plex Mono', monospace", color: ACCENT }}>{v.tag}</span>
-                  <h3 className="text-[17px] font-medium mb-2.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{v.t}</h3>
-                  <p className="text-[14.5px] leading-relaxed" style={{ color: INK_SOFT }}>{v.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section id="faq" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8">
           <Reveal className="lg:col-span-4">
-            <SectionLabel n="07">Časté otázky</SectionLabel>
+            <SectionLabel n="06">Časté otázky</SectionLabel>
             <h2 className="text-[26px] lg:text-[30px] leading-[1.25] font-semibold tracking-tight max-w-[320px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Co byste o R1 Service mohli chtít vědět.
             </h2>
@@ -657,7 +630,7 @@ export default function R1Landing() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="mb-4">
             <span className="text-[11px] tracking-[0.14em] uppercase" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#8A8E86" }}>
-              08 — Kontakt
+              07 — Kontakt
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 pb-10" style={{ borderBottom: `1px solid ${BORDER}` }}>
