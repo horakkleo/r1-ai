@@ -344,6 +344,22 @@ export default function R1Landing() {
     { n: "04", t: "Předá vám připravenou poptávku", d: "Strukturovaná poptávka nebo rezervace je hotová a čeká na vás — nic neřešíte za chodu." },
   ];
 
+  const repSteps = [
+    { n: "01", t: "Zakázka je hotová", d: "Oprava, objednávka nebo rezervace je u konce." },
+    { n: "02", t: "Zákazník dostane zprávu", d: "Poděkování s odkazem na hodnocení, ať nemusí nic hledat." },
+    { n: "03", t: "Nechá hodnocení", d: "Zákazník ohodnotí váš provoz přímo na Google Maps." },
+    { n: "04", t: "Dostanete upozornění", d: "O nové recenzi se dozvíte hned, ne až náhodou." },
+    { n: "05", t: "AI navrhne odpověď", d: "Návrh reakce na recenzi čeká na vaše schválení." },
+  ];
+
+  const textbackSteps = [
+    { n: "01", t: "Zákazník zavolá", d: "Telefonát přijde v běžné špičce." },
+    { n: "02", t: "Hovor se zmešká", d: "Nikdo ho nestihne zvednout." },
+    { n: "03", t: "Hned mu odejde SMS", d: "Zákazník dostane zprávu, ať napíše, s čím potřebuje pomoct." },
+    { n: "04", t: "Zákazník odpoví", d: "Napíše, o co jde, písemně, až bude mít chvilku." },
+    { n: "05", t: "Dostanete poptávku", d: "Číslo, zpráva a čas hovoru přehledně na jednom místě." },
+  ];
+
   const benefits = [
     { t: "Méně zmeškaných hovorů", d: "Telefonát nezůstane bez odpovědi jen proto, že zrovna nikdo nemůže k telefonu." },
     { t: "Méně vyrušování týmu", d: "Personál nemusí odbíhat od rozdělané práce, aby zvedl telefon." },
@@ -363,6 +379,8 @@ export default function R1Landing() {
   const navLinks = [
     { href: "#problem", label: "Problém" },
     { href: "#jak-to-funguje", label: "Jak to funguje" },
+    { href: "#ai-reputation", label: "AI Reputation" },
+    { href: "#text-back", label: "Text-Back" },
     { href: "#pro-koho", label: "Pro koho" },
     { href: "#faq", label: "FAQ" },
     { href: "#kontakt", label: "Kontakt" },
@@ -538,11 +556,65 @@ export default function R1Landing() {
         </div>
       </section>
 
+      {/* AI REPUTATION */}
+      <section id="ai-reputation" className="py-20 lg:py-28" style={{ background: "#FFFFFF", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <Reveal>
+            <SectionLabel n="04">AI Reputation</SectionLabel>
+            <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-4 max-w-[600px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              Po zakázce požádá o hodnocení a hlídá recenze za vás.
+            </h2>
+            <p className="text-[16px] leading-[1.75] mb-16 max-w-[560px]" style={{ color: INK_SOFT }}>
+              Zákazník dostane zprávu s odkazem na hodnocení, vy dostanete upozornění na každou novou recenzi a návrh odpovědi ke schválení — nic neodesíláme za vás bez vědomí.
+            </p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px" style={{ background: BORDER }}>
+            {repSteps.map((s, i) => (
+              <Reveal key={s.n} delay={i * 80}>
+                <div className="p-6 lg:p-7 h-full" style={{ background: "#FFFFFF" }}>
+                  <span className="text-[13px] block mb-8" style={{ fontFamily: "'IBM Plex Mono', monospace", color: ACCENT }}>{s.n}</span>
+                  <h3 className="text-[15.5px] font-medium mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.t}</h3>
+                  <p className="text-[13.5px] leading-relaxed" style={{ color: INK_SOFT }}>{s.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MISSED CALL TEXT-BACK */}
+      <section id="text-back" className="py-20 lg:py-28" style={{ background: DARK }}>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <Reveal>
+            <SectionLabel n="05" dark>Missed Call Text-Back</SectionLabel>
+            <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-4 max-w-[600px]" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F2" }}>
+              Zmeškaný hovor nemusí být ztracený zákazník.
+            </h2>
+            <p className="text-[16px] leading-[1.75] mb-16 max-w-[560px]" style={{ color: DARK_TEXT_SOFT }}>
+              Když se hovor zmešká, zákazníkovi hned odejde SMS, ať napíše, s čím potřebuje pomoct. Vy odpovíte, až budete mít chvilku — žádný AI hlas, jen jednodušší cesta, jak zákazníka neztratit.
+            </p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px" style={{ background: DARK_BORDER }}>
+            {textbackSteps.map((s, i) => (
+              <Reveal key={s.n} delay={i * 80}>
+                <div className="p-6 lg:p-7 h-full" style={{ background: DARK }}>
+                  <span className="text-[13px] block mb-8" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#5C8DFF" }}>{s.n}</span>
+                  <h3 className="text-[15.5px] font-medium mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F2" }}>{s.t}</h3>
+                  <p className="text-[13.5px] leading-relaxed" style={{ color: DARK_TEXT_SOFT }}>{s.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BENEFITS */}
       <section id="prinosy" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <Reveal>
-            <SectionLabel n="04">Přínosy</SectionLabel>
+            <SectionLabel n="06">Přínosy</SectionLabel>
             <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-16 max-w-[560px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Co to reálně přinese vašemu provozu.
             </h2>
@@ -570,7 +642,7 @@ export default function R1Landing() {
             >
               <div className="max-w-[520px]">
                 <div className="text-[11px] tracking-[0.14em] uppercase mb-4" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#7C97FF" }}>
-                  05 — Ukázka
+                  07 — Ukázka
                 </div>
                 <h2 className="text-[26px] lg:text-[30px] leading-[1.2] font-semibold tracking-tight text-white mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   Poslechněte si, jak může R1 Service fungovat u vás.
@@ -598,7 +670,7 @@ export default function R1Landing() {
       <section id="faq" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8">
           <Reveal className="lg:col-span-4">
-            <SectionLabel n="06">Časté otázky</SectionLabel>
+            <SectionLabel n="08">Časté otázky</SectionLabel>
             <h2 className="text-[26px] lg:text-[30px] leading-[1.25] font-semibold tracking-tight max-w-[320px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Co byste o R1 Service mohli chtít vědět.
             </h2>
@@ -630,7 +702,7 @@ export default function R1Landing() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="mb-4">
             <span className="text-[11px] tracking-[0.14em] uppercase" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#8A8E86" }}>
-              07 — Kontakt
+              09 — Kontakt
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 pb-10" style={{ borderBottom: `1px solid ${BORDER}` }}>
