@@ -337,9 +337,30 @@ export default function R1Landing() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const products = [
+    {
+      n: "01",
+      t: "AI Asistent",
+      d: "Zvedne příchozí hovor, zjistí, co zákazník potřebuje, a předá vám hotovou poptávku nebo rezervaci.",
+      anchor: "#ai-asistent",
+    },
+    {
+      n: "02",
+      t: "AI Reputation",
+      d: "Po dokončené zakázce požádá zákazníka o hodnocení a hlídá, co o vás lidé píšou na Google Maps.",
+      anchor: "#ai-reputation",
+    },
+    {
+      n: "03",
+      t: "Missed Call Text-Back",
+      d: "Když se hovor zmešká, zákazníkovi hned odejde SMS, ať napíše, s čím potřebuje pomoct.",
+      anchor: "#text-back",
+    },
+  ];
+
   const steps = [
     { n: "01", t: "Zákazník zavolá", d: "Telefonát přijde v době, kdy nikdo z provozu nemůže zvednout telefon — je vytížený jinou prací." },
-    { n: "02", t: "R1 Service přijme hovor", d: "Recepce hovor okamžitě zvedne a přirozeně komunikuje se zákazníkem, i mimo pracovní dobu." },
+    { n: "02", t: "AI Asistent přijme hovor", d: "Hovor okamžitě zvedne a přirozeně komunikuje se zákazníkem, i mimo pracovní dobu." },
     { n: "03", t: "Zjistí potřebné informace", d: "Jméno, telefon, co zákazník potřebuje a případně požadovaný termín." },
     { n: "04", t: "Předá vám připravenou poptávku", d: "Strukturovaná poptávka nebo rezervace je hotová a čeká na vás — nic neřešíte za chodu." },
   ];
@@ -367,21 +388,25 @@ export default function R1Landing() {
     { t: "Dostupnost i mimo běžnou pracovní dobu", d: "Zákazník se dovolá i večer nebo o víkendu, kdy je provoz běžně zavřený." },
   ];
 
+  const bundleItems = [
+    { t: "AI Asistent", d: "zvedá hovory a stará se o poptávky i rezervace." },
+    { t: "AI Reputation", d: "sbírá hodnocení a hlídá recenze." },
+    { t: "Missed Call Text-Back", d: "dohání hovory, které se přesto zmeškají." },
+  ];
+
   const faqs = [
-    { q: "Co R1 Service umí?", a: "R1 Service vede první komunikaci se zákazníkem, zjistí předem definované informace a předá je vašemu provozu jako hotovou poptávku nebo rezervaci." },
-    { q: "Umí R1 Service přijímat hovory?", a: "Ano, přijímání a zpracování telefonátů je hlavní směr služby. Konkrétní nastavení se přizpůsobuje potřebám vašeho provozu." },
-    { q: "Co když zákazník požaduje něco, co recepce nezvládne?", a: "Recepce pracuje podle předem nastavených scénářů. Složitější požadavky mohou být předány přímo vám." },
-    { q: "Jak se informace dostanou k vám?", a: "Poptávku nebo rezervaci vám předáme v přehledné podobě. Konkrétní způsob (e-mail, SMS či jinak) nastavíme podle toho, co vám vyhovuje." },
-    { q: "Jak probíhá spuštění?", a: "Po ukázce si společně projdeme provoz — otevírací dobu, nabízené služby a časté dotazy — a podle toho recepci nastavíme." },
-    { q: "Kolik R1 Service stojí?", a: "Cena se odvíjí od rozsahu využití a konkrétního nastavení. Podrobnosti vám představíme během ukázky." },
+    { q: "Co R1 Service umí?", a: "R1 Service jsou tři samostatné produkty — AI Asistent, AI Reputation a Missed Call Text-Back. Každý řeší jinou situaci, ve které provoz běžně přichází o zákazníka." },
+    { q: "Musím si koupit všechny tři produkty?", a: "Ne. Každý produkt funguje samostatně a můžete si vybrat jen ten, který vám dává smysl. Většina provozů si nakonec objedná všechny tři jako jeden balíček, ale není to podmínkou." },
+    { q: "Co když zákazník požaduje něco, co AI Asistent nezvládne?", a: "AI Asistent pracuje podle předem nastavených scénářů. Složitější požadavky mohou být předány přímo vám." },
+    { q: "Jak se informace dostanou k vám?", a: "Poptávku, rezervaci nebo zprávu vám předáme v přehledné podobě. Konkrétní způsob (e-mail, SMS či jinak) nastavíme podle toho, co vám vyhovuje." },
+    { q: "Jak probíhá spuštění?", a: "Po ukázce si společně projdeme provoz — otevírací dobu, nabízené služby a časté dotazy — a podle toho produkty nastavíme." },
+    { q: "Kolik R1 Service stojí?", a: "Cena se odvíjí od toho, které produkty zvolíte, a od rozsahu využití. Podrobnosti vám představíme během ukázky." },
   ];
 
   const navLinks = [
     { href: "#problem", label: "Problém" },
-    { href: "#jak-to-funguje", label: "Jak to funguje" },
-    { href: "#ai-reputation", label: "AI Reputation" },
-    { href: "#text-back", label: "Text-Back" },
-    { href: "#pro-koho", label: "Pro koho" },
+    { href: "#produkty", label: "Produkty" },
+    { href: "#balicek", label: "Balíček" },
     { href: "#faq", label: "FAQ" },
     { href: "#kontakt", label: "Kontakt" },
   ];
@@ -461,7 +486,7 @@ export default function R1Landing() {
               className="inline-flex items-center gap-2 text-[12px] tracking-[0.1em] uppercase mb-7 px-3 py-1.5 rounded-full"
               style={{ fontFamily: "'IBM Plex Mono', monospace", color: ACCENT, background: "#E8EEFF" }}
             >
-              Recepce pro provozy, které nestíhají telefon
+              Tři produkty pro provozy, které nestíhají telefon
             </div>
             <h1
               className="text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.1] tracking-tight font-semibold mb-7"
@@ -469,12 +494,12 @@ export default function R1Landing() {
             >
               Nezmeškejte zákazníka jen proto, že právě nemůžete zvednout telefon.
             </h1>
-            <p className="text-[17px] lg:text-[18.5px] leading-relaxed mb-10 max-w-[460px]" style={{ color: INK_SOFT }}>
-              R1 Service přijme hovor, zjistí, co zákazník potřebuje, a předá vám hotovou poptávku nebo rezervaci — ať děláte cokoliv.
+            <p className="text-[17px] lg:text-[18.5px] leading-relaxed mb-10 max-w-[480px]" style={{ color: INK_SOFT }}>
+              R1 Service je sada tří samostatných produktů — AI Asistent, AI Reputation a Missed Call Text-Back. Každý řeší jinou situaci, ve které provoz nejčastěji přichází o zákazníka. Fungují jednotlivě, nebo jako balíček.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <PrimaryButton href={MAILTO}>Domluvit 10minutovou ukázku</PrimaryButton>
-              <SecondaryButton href="#jak-to-funguje">Jak to funguje</SecondaryButton>
+              <SecondaryButton href="#produkty">Naše produkty</SecondaryButton>
             </div>
           </Reveal>
 
@@ -515,28 +540,43 @@ export default function R1Landing() {
         </div>
       </section>
 
-      {/* SOLUTION */}
-      <section id="reseni" className="py-20 lg:py-28">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          <Reveal className="lg:col-span-5">
-            <SectionLabel n="02">Řešení</SectionLabel>
-            <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              R1 Service převezme první kontakt za vás.
+      {/* PRODUKTY — overview of the three separate products, the "head" the rest hangs off */}
+      <section id="produkty" className="py-20 lg:py-28">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <Reveal>
+            <SectionLabel n="02">Produkty</SectionLabel>
+            <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-4 max-w-[600px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              Tři samostatné produkty, ne jeden balík funkcí.
             </h2>
-          </Reveal>
-          <Reveal delay={100} className="lg:col-span-6 lg:col-start-7">
-            <p className="text-[16px] leading-[1.75] max-w-[520px]" style={{ color: INK_SOFT }}>
-              R1 Service přijme příchozí hovor a vede se zákazníkem první komunikaci — zjistí, co potřebuje, a předá vám to jako přehlednou poptávku nebo rezervaci. Cílem je, abyste o zakázku nepřišli jen kvůli nezvednutému telefonu.
+            <p className="text-[16px] leading-[1.75] mb-16 max-w-[560px]" style={{ color: INK_SOFT }}>
+              Každý produkt řeší jinou situaci a dá se objednat sám za sebe. Dohromady kryjí nejčastější způsoby, jak provoz přijde o zákazníka — zmeškaný hovor, ztracenou poptávku i chybějící recenzi.
             </p>
           </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {products.map((p, i) => (
+              <Reveal key={p.n} delay={i * 90}>
+                <a
+                  href={p.anchor}
+                  className="block p-7 rounded-[14px] h-full transition-colors duration-200 hover:bg-[#F6F6F3]"
+                  style={{ border: `1px solid ${BORDER}` }}
+                >
+                  <span className="text-[13px] block mb-6" style={{ fontFamily: "'IBM Plex Mono', monospace", color: ACCENT }}>{p.n}</span>
+                  <h3 className="text-[18px] font-medium mb-2.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{p.t}</h3>
+                  <p className="text-[14.5px] leading-relaxed mb-5" style={{ color: INK_SOFT }}>{p.d}</p>
+                  <span className="text-[13.5px] font-medium" style={{ color: ACCENT }}>Jak přesně funguje →</span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section id="jak-to-funguje" className="py-20 lg:py-28" style={{ background: DARK }}>
+      {/* PRODUCT 1 — AI ASISTENT */}
+      <section id="ai-asistent" className="py-20 lg:py-28" style={{ background: DARK }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <Reveal>
-            <SectionLabel n="03" dark>Jak to funguje</SectionLabel>
+            <SectionLabel n="03" dark>Produkt 1 — AI Asistent</SectionLabel>
             <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-16 max-w-[600px]" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F2" }}>
               Čtyři kroky od zvonícího telefonu k hotové poptávce.
             </h2>
@@ -556,11 +596,11 @@ export default function R1Landing() {
         </div>
       </section>
 
-      {/* AI REPUTATION */}
+      {/* PRODUCT 2 — AI REPUTATION */}
       <section id="ai-reputation" className="py-20 lg:py-28" style={{ background: "#FFFFFF", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <Reveal>
-            <SectionLabel n="04">AI Reputation</SectionLabel>
+            <SectionLabel n="04">Produkt 2 — AI Reputation</SectionLabel>
             <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-4 max-w-[600px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Po zakázce požádá o hodnocení a hlídá recenze za vás.
             </h2>
@@ -583,11 +623,11 @@ export default function R1Landing() {
         </div>
       </section>
 
-      {/* MISSED CALL TEXT-BACK */}
+      {/* PRODUCT 3 — MISSED CALL TEXT-BACK */}
       <section id="text-back" className="py-20 lg:py-28" style={{ background: DARK }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <Reveal>
-            <SectionLabel n="05" dark>Missed Call Text-Back</SectionLabel>
+            <SectionLabel n="05" dark>Produkt 3 — Missed Call Text-Back</SectionLabel>
             <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-4 max-w-[600px]" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F2" }}>
               Zmeškaný hovor nemusí být ztracený zákazník.
             </h2>
@@ -632,6 +672,41 @@ export default function R1Landing() {
         </div>
       </section>
 
+      {/* BALÍČEK — explicit: 3 standalone products, optionally combined, no pricing shown */}
+      <section id="balicek" className="py-20 lg:py-28" style={{ background: "#FFFFFF", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          <Reveal className="lg:col-span-5">
+            <SectionLabel n="07">Balíček</SectionLabel>
+            <h2 className="text-[28px] lg:text-[34px] leading-[1.15] font-semibold tracking-tight mb-5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              Jeden produkt, nebo všechny tři.
+            </h2>
+            <p className="text-[16px] leading-[1.75] max-w-[480px]" style={{ color: INK_SOFT }}>
+              Každý produkt si můžete objednat samostatně. Většina provozů si ale nakonec vezme všechny tři dohromady jako jeden balíček, protože se vzájemně doplňují.
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="lg:col-span-6 lg:col-start-7">
+            <div className="rounded-[14px] p-7" style={{ border: `1px solid ${BORDER}` }}>
+              <span className="text-[12px] tracking-[0.12em] uppercase block mb-5" style={{ fontFamily: "'IBM Plex Mono', monospace", color: INK_SOFT }}>
+                V balíčku dostanete
+              </span>
+              <ul className="flex flex-col gap-4 mb-6">
+                {bundleItems.map((item) => (
+                  <li key={item.t} className="flex items-start gap-3">
+                    <span className="flex-none text-[15px] font-medium mt-0.5" style={{ color: ACCENT }}>—</span>
+                    <span className="text-[15px] leading-relaxed" style={{ color: INK }}>
+                      <span className="font-medium">{item.t}</span> — {item.d}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-[13.5px] leading-relaxed" style={{ color: INK_SOFT }}>
+                Přesný rozsah a cenu probereme na ukázce podle toho, co váš provoz skutečně potřebuje.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* DEMO CTA */}
       <section id="ukazka" className="py-16 lg:py-20">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
@@ -642,13 +717,13 @@ export default function R1Landing() {
             >
               <div className="max-w-[520px]">
                 <div className="text-[11px] tracking-[0.14em] uppercase mb-4" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#7C97FF" }}>
-                  07 — Ukázka
+                  08 — Ukázka
                 </div>
                 <h2 className="text-[26px] lg:text-[30px] leading-[1.2] font-semibold tracking-tight text-white mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   Poslechněte si, jak může R1 Service fungovat u vás.
                 </h2>
                 <p className="text-[15.5px] leading-relaxed" style={{ color: "#B9C4E8" }}>
-                  Během přibližně 10 minut vám ukážeme, jak recepce přijme hovor a zpracuje zákaznickou poptávku nebo rezervaci.
+                  Během přibližně 10 minut vám ukážeme všechny tři produkty a probereme, které dávají smysl pro váš provoz.
                 </p>
               </div>
               <a
@@ -670,7 +745,7 @@ export default function R1Landing() {
       <section id="faq" className="py-20 lg:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-10 lg:gap-8">
           <Reveal className="lg:col-span-4">
-            <SectionLabel n="08">Časté otázky</SectionLabel>
+            <SectionLabel n="09">Časté otázky</SectionLabel>
             <h2 className="text-[26px] lg:text-[30px] leading-[1.25] font-semibold tracking-tight max-w-[320px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Co byste o R1 Service mohli chtít vědět.
             </h2>
@@ -702,7 +777,7 @@ export default function R1Landing() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="mb-4">
             <span className="text-[11px] tracking-[0.14em] uppercase" style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#8A8E86" }}>
-              09 — Kontakt
+              10 — Kontakt
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 pb-10" style={{ borderBottom: `1px solid ${BORDER}` }}>
